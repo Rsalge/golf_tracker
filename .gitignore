@@ -1,1 +1,3 @@
+# .gitignore for boilerplate project
 node_modules/
+.env 
