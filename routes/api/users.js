@@ -10,9 +10,9 @@ router.get("/", (req, res, next) =>
 //POST new user route (optional, everyone has access)
 router.post("/", auth.optional, (req, res, next) => {
   console.log("This is the request body\n\n", req.body);
-  const {
-    body: { user }
-  } = req;
+  const user = req.body;
+
+  console.log("\n\nTHis is the user info: ", user);
 
   if (!user.email) {
     return res.status(422).json({
@@ -83,6 +83,7 @@ router.post("/login", auth.optional, (req, res, next) => {
 
 //GET current route (required, only authenticated users have access)
 router.get("/current", auth.required, (req, res, next) => {
+  console.log("Hitting the current endpoint");
   const {
     payload: { id }
   } = req;
