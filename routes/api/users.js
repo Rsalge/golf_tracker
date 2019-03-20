@@ -12,8 +12,6 @@ router.post("/", auth.optional, (req, res, next) => {
   console.log("This is the request body\n\n", req.body);
   const user = req.body;
 
-  console.log("\n\nTHis is the user info: ", user);
-
   if (!user.email) {
     return res.status(422).json({
       errors: {
@@ -41,10 +39,9 @@ router.post("/", auth.optional, (req, res, next) => {
 
 //POST login route (optional, everyone has access)
 router.post("/login", auth.optional, (req, res, next) => {
-  const {
-    body: { user }
-  } = req;
-
+  const user = req.body;
+  
+  console.log("User login endpoint", req.body);
   if (!user.email) {
     return res.status(422).json({
       errors: {
