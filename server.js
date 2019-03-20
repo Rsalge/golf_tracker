@@ -5,6 +5,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const port = process.env.PORT || 5000;
 
+console.log("The datbse host is: ", process.env.DB_HOST);
 const db = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${
   process.env.DB_HOST
 }`;
