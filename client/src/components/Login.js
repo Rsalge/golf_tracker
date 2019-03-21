@@ -24,7 +24,7 @@ class Login extends Component {
   }
 
   login() {
-    console.log("Login button pressed");
+    console.log("Login button pressed", this.state);
     axios
       .post("/api/users/login", {
         email: this.state.email,

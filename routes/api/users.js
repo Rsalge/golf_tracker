@@ -27,7 +27,9 @@ router.post("/", auth.optional, (req, res, next) => {
       }
     });
   }
-
+  if (Users.findOne({email})) {
+    return 
+  }
   const finalUser = new Users(user);
 
   finalUser.setPassword(user.password);
@@ -57,7 +59,7 @@ router.post("/login", auth.optional, (req, res, next) => {
       }
     });
   }
-
+  console.log("Right before Authenticate");
   return passport.authenticate(
     "local",
     { session: false },
@@ -65,15 +67,16 @@ router.post("/login", auth.optional, (req, res, next) => {
       if (err) {
         return next(err);
       }
+      console.log("passportUser: ", passportUser, "\n auth.optional: ", auth.optional, "\n info: ", info);
 
       if (passportUser) {
         const user = passportUser;
         user.token = passportUser.generateJWT();
-
+        console.log("User authenticated: ", user);
         return res.json({ user: user.toAuthJSON() });
       }
 
-      return status(400).info;
+      return res.status(400).info;
     }
   )(req, res, next);
 });
