@@ -8,7 +8,7 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tasks: [{ message: "Task Number 1" }, { message: "Task Number 2" }]
+      user: 
     };
   }
 
@@ -18,7 +18,7 @@ class Home extends Component {
         <h1>Here is the home page</h1>
         <Login />
         <Link to="/signup">Sign Up</Link>
-        <Tasks tasks={this.state.tasks} />
+        <Tasks />
       </div>
     );
   }
